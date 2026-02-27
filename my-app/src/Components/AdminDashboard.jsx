@@ -43,6 +43,7 @@ function AdminDashboard() {
   const [trendKey, setTrendKey] = useState(0);
 
   const token = localStorage.getItem("adminToken");
+  console.log(token)
 
   const topCards = [
     { icon: "orders", label: "Total Orders", value: "227" },
