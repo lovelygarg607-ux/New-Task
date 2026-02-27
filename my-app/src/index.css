@@ -1221,29 +1221,6 @@ th {
     flex: 0 0 auto;
   }
 
-  .products-table-products th:nth-child(6),
-  .products-table-products td:nth-child(6),
-  .products-table-products th:nth-child(7),
-  .products-table-products td:nth-child(7),
-  .products-table-products th:nth-child(8),
-  .products-table-products td:nth-child(8) {
-    display: none;
-  }
-
-  .products-table-categories th:nth-child(3),
-  .products-table-categories td:nth-child(3),
-  .products-table-categories th:nth-child(4),
-  .products-table-categories td:nth-child(4) {
-    display: none;
-  }
-
-  .products-table-products td:nth-child(2),
-  .products-table-products td:nth-child(4),
-  .products-table-categories td:nth-child(2) {
-    white-space: normal;
-    min-width: 140px;
-  }
-
   .action-wrap {
     flex-wrap: wrap;
   }
@@ -1378,19 +1355,6 @@ th {
     gap: 8px;
   }
 
-  .products-table-products th:nth-child(3),
-  .products-table-products td:nth-child(3),
-  .products-table-categories th:nth-child(5),
-  .products-table-categories td:nth-child(5) {
-    display: none;
-  }
-
-  .products-table-products td:nth-child(2),
-  .products-table-products td:nth-child(4),
-  .products-table-categories td:nth-child(2) {
-    min-width: 120px;
-  }
-
   .action-btn {
     font-size: 8px;
     padding: 2px 5px;
@@ -1402,14 +1366,6 @@ th {
 
   .products-table {
     min-width: 700px;
-  }
-
-  .products-table-products {
-    min-width: 620px;
-  }
-
-  .products-table-categories {
-    min-width: 520px;
   }
 }
 
@@ -1452,14 +1408,6 @@ th {
   .products-table {
     min-width: 620px;
   }
-
-  .products-table-products {
-    min-width: 560px;
-  }
-
-  .products-table-categories {
-    min-width: 480px;
-  }
 }
 
 .products-view {
@@ -1501,6 +1449,11 @@ th {
 .products-head-actions {
   display: flex;
   gap: 6px;
+  flex-wrap: wrap;
+}
+
+.products-head-actions button {
+  white-space: nowrap;
 }
 
 .export-btn,
@@ -1553,6 +1506,12 @@ th {
 
 .products-table-panel {
   padding: 0;
+}
+
+.products-table-panel .table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
 .products-table {
