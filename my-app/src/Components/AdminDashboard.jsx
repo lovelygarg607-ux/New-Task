@@ -319,81 +319,96 @@ function AdminDashboard() {
     }
   };
 
-  const handleAddProductSubmit = async (event) => {
-    event.preventDefault();
-    if (!newProduct.name.trim() || !newProduct.brand.trim() || !String(newProduct.price).trim()) return;
+const BASE_URL = "https://new-task-2-g3c8.onrender.com";
 
-    const payload = {
-      name: newProduct.name.trim(),
-      brand: newProduct.brand.trim(),
-      categories: newProduct.categories.trim() || "-",
-      price: Number(String(newProduct.price).replace(/,/g, "")),
-      themes: newProduct.themes.trim() || "General",
-      published: newProduct.published,
-      featured: newProduct.featured,
-    };
+const handleAddProductSubmit = async (event) => {
+  event.preventDefault();
 
-    try {
-      const isUpdate = editingProductId !== null;
-      const response = await fetch(
-        isUpdate ? `/store/admin/products/${editingProductId}` : "https://new-task-2-g3c8.onrender.com/store/admin/products",
-        {
-          method: isUpdate ? "PUT" : "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        }
-      );
+  if (!newProduct.name.trim() || 
+      !newProduct.brand.trim() || 
+      !String(newProduct.price).trim()) return;
 
-      const result = await response.json();
-      if (!response.ok || result.status !== "success") {
-        throw new Error(result.message || "Failed to save product");
-      }
-
-      await fetchProducts();
-      setIsProductsOpen(true);
-      setActiveView("all-products");
-      handleCloseAddProduct();
-    } catch (error) {
-      console.error(error.message);
-    }
+  const payload = {
+    name: newProduct.name.trim(),
+    brand: newProduct.brand.trim(),
+    categories: newProduct.categories.trim() || "-",
+    price: Number(String(newProduct.price).replace(/,/g, "")),
+    themes: newProduct.themes.trim() || "General",
+    published: newProduct.published,
+    featured: newProduct.featured,
   };
 
-  const handleAddCategorySubmit = async (event) => {
-    event.preventDefault();
-    if (!newCategory.name.trim()) return;
+  try {
+    const isUpdate = editingProductId !== null;
 
-    const payload = {
-      name: newCategory.name.trim(),
-      baseCategory: newCategory.baseCategory.trim() || "N/A",
-      brands: newCategory.brands.trim() || "N/A",
-      priority: Number(newCategory.priority || 0),
-      theme: newCategory.theme.trim() || "General",
-    };
-
-    try {
-      const isUpdate = editingCategoryId !== null;
-      const response = await fetch(
-        isUpdate ? `/store/admin/categories/${editingCategoryId}` : "https://new-task-2-g3c8.onrender.com/store/admin/categories",
-        {
-          method: isUpdate ? "PUT" : "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        }
-      );
-
-      const result = await response.json();
-      if (!response.ok || result.status !== "success") {
-        throw new Error(result.message || "Failed to save category");
+    const response = await fetch(
+      isUpdate
+        ? `${BASE_URL}/store/admin/products/${editingProductId}`
+        : `${BASE_URL}/store/admin/products`,
+      {
+        method: isUpdate ? "PUT" : "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
       }
+    );
 
-      await fetchCategories();
-      setIsProductsOpen(true);
-      setActiveView("all-categories");
-      handleCloseAddCategory();
-    } catch (error) {
-      console.error(error.message);
+    const result = await response.json();
+
+    if (!response.ok || result.status !== "success") {
+      throw new Error(result.message || "Failed to save product");
     }
+
+    await fetchProducts();
+    setIsProductsOpen(true);
+    setActiveView("all-products");
+    handleCloseAddProduct();
+
+  } catch (error) {
+    console.error(error.message);
+  }
+};
+
+const handleAddCategorySubmit = async (event) => {
+  event.preventDefault();
+  if (!newCategory.name.trim()) return;
+
+  const payload = {
+    name: newCategory.name.trim(),
+    baseCategory: newCategory.baseCategory.trim() || "N/A",
+    brands: newCategory.brands.trim() || "N/A",
+    priority: Number(newCategory.priority || 0),
+    theme: newCategory.theme.trim() || "General",
   };
+
+  try {
+    const isUpdate = editingCategoryId !== null;
+
+    const response = await fetch(
+      isUpdate
+        ? `${BASE_URL}/store/admin/categories/${editingCategoryId}`
+        : `${BASE_URL}/store/admin/categories`,
+      {
+        method: isUpdate ? "PUT" : "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      }
+    );
+
+    const result = await response.json();
+
+    if (!response.ok || result.status !== "success") {
+      throw new Error(result.message || "Failed to save category");
+    }
+
+    await fetchCategories();
+    setIsProductsOpen(true);
+    setActiveView("all-categories");
+    handleCloseAddCategory();
+
+  } catch (error) {
+    console.error(error.message);
+  }
+};
 
   const filteredProductRows = productRows.filter((item) => {
     const queryA = productsSearch.trim().toLowerCase();
