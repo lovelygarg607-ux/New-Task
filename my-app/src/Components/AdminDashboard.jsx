@@ -838,7 +838,7 @@ const handleAddCategorySubmit = async (event) => {
 
       <div className="panel products-table-panel">
         <div className="table-wrap">
-          <table className="products-table">
+          <table className="products-table products-table-products">
             <thead>
               <tr>
                 <th>S/L</th>
@@ -909,7 +909,7 @@ const handleAddCategorySubmit = async (event) => {
 
       <div className="panel products-table-panel">
         <div className="table-wrap">
-          <table className="products-table">
+          <table className="products-table products-table-categories">
             <thead>
               <tr>
                 <th>S/L</th>

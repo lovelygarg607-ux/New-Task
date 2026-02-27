@@ -28,7 +28,7 @@ body.sidebar-open {
   background: #ffffff;
   border: 1px solid #dee5ee;
   border-radius: 0;
-  overflow-x: hidden;
+  overflow-x: clip;
   overflow-y: visible;
 }
 
@@ -1205,6 +1205,48 @@ th {
   .media-search-wrap input {
     width: 100%;
   }
+
+  .products-page-head {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .products-head-actions {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+  .products-head-actions > * {
+    flex: 0 0 auto;
+  }
+
+  .products-table-products th:nth-child(6),
+  .products-table-products td:nth-child(6),
+  .products-table-products th:nth-child(7),
+  .products-table-products td:nth-child(7),
+  .products-table-products th:nth-child(8),
+  .products-table-products td:nth-child(8) {
+    display: none;
+  }
+
+  .products-table-categories th:nth-child(3),
+  .products-table-categories td:nth-child(3),
+  .products-table-categories th:nth-child(4),
+  .products-table-categories td:nth-child(4) {
+    display: none;
+  }
+
+  .products-table-products td:nth-child(2),
+  .products-table-products td:nth-child(4),
+  .products-table-categories td:nth-child(2) {
+    white-space: normal;
+    min-width: 140px;
+  }
+
+  .action-wrap {
+    flex-wrap: wrap;
+  }
 }
 
 @media (max-width: 768px) {
@@ -1336,12 +1378,38 @@ th {
     gap: 8px;
   }
 
+  .products-table-products th:nth-child(3),
+  .products-table-products td:nth-child(3),
+  .products-table-categories th:nth-child(5),
+  .products-table-categories td:nth-child(5) {
+    display: none;
+  }
+
+  .products-table-products td:nth-child(2),
+  .products-table-products td:nth-child(4),
+  .products-table-categories td:nth-child(2) {
+    min-width: 120px;
+  }
+
+  .action-btn {
+    font-size: 8px;
+    padding: 2px 5px;
+  }
+
   table {
     min-width: 760px;
   }
 
   .products-table {
     min-width: 700px;
+  }
+
+  .products-table-products {
+    min-width: 620px;
+  }
+
+  .products-table-categories {
+    min-width: 520px;
   }
 }
 
@@ -1383,6 +1451,14 @@ th {
 
   .products-table {
     min-width: 620px;
+  }
+
+  .products-table-products {
+    min-width: 560px;
+  }
+
+  .products-table-categories {
+    min-width: 480px;
   }
 }
 
