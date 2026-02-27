@@ -226,6 +226,12 @@ function AdminDashboard() {
     return () => document.body.classList.remove("sidebar-open");
   }, [isSidebarOpen]);
 
+  useEffect(() => {
+    if (activeView === "all-products" || activeView === "all-categories") {
+      setIsProductsOpen(true);
+    }
+  }, [activeView]);
+
   const handleLogout = () => {
     localStorage.removeItem("adminToken");
     window.location.assign("/");
@@ -235,6 +241,14 @@ function AdminDashboard() {
     setActiveView(view);
     if (window.innerWidth <= 768) {
       setIsSidebarOpen(false);
+    }
+  };
+
+  const handleProductsToggle = () => {
+    const nextOpen = !isProductsOpen;
+    setIsProductsOpen(nextOpen);
+    if (nextOpen) {
+      handleSetActiveView("all-products");
     }
   };
 
@@ -944,7 +958,7 @@ const handleAddCategorySubmit = async (event) => {
         <div className="brand"><span className="brand-dot" />GrowStore</div>
         <nav className="admin-nav">
           <button className={`nav-item ${activeView === "dashboard" ? "active" : ""}`} type="button" onClick={() => handleSetActiveView("dashboard")}>Dashboard 1</button>
-          <button className="nav-item nav-with-icon" type="button" onClick={() => setIsProductsOpen((prev) => !prev)} aria-expanded={isProductsOpen}>
+          <button className="nav-item nav-with-icon" type="button" onClick={handleProductsToggle} aria-expanded={isProductsOpen}>
             <span>Products</span>
             <span className={`dropdown-icon ${isProductsOpen ? "open" : ""}`}>v</span>
           </button>

@@ -1124,35 +1124,12 @@ th {
 
 @media (max-width: 1024px) {
   .admin-layout {
-    grid-template-columns: 1fr;
+    grid-template-columns: 190px 1fr;
   }
 
   .admin-sidebar {
-    border-right: 0;
-    border-bottom: 1px solid #e4ebf3;
-  }
-
-  .admin-nav {
-    display: flex;
-    flex-wrap: nowrap;
-    gap: 6px;
-    overflow-x: auto;
-    padding-bottom: 4px;
-  }
-
-  .admin-nav .nav-group-title {
-    display: none;
-  }
-
-  .admin-nav .nav-item,
-  .admin-nav .nav-sub-item {
-    flex: 0 0 auto;
-    white-space: nowrap;
-    padding: 6px 10px;
-    border: 1px solid #dbe4ef;
-    border-radius: 999px;
-    background: #fff;
-    font-size: 11px;
+    border-right: 1px solid #e4ebf3;
+    border-bottom: 0;
   }
 
   .dashboard-top-grid {
@@ -1226,6 +1203,7 @@ th {
 @media (max-width: 768px) {
   .admin-layout {
     position: relative;
+    grid-template-columns: 1fr;
   }
 
   .mobile-menu-btn {
