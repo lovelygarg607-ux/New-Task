@@ -1,4 +1,4 @@
-import Adminmodel from "../models/adminmodel.js"
+import Adminmodel from "../models/Adminmodel.js"
 import bcrypt from "bcrypt"
 
 
