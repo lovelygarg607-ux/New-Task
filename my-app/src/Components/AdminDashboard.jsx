@@ -155,7 +155,7 @@ function AdminDashboard() {
   const fetchProducts = async () => {
     try {
       setProductsLoading(true);
-      const response = await fetch("/store/admin/products?limit=15&page=1");
+      const response = await fetch("https://new-task-2-g3c8.onrender.com/store/admin/products?limit=15&page=1");
       const result = await response.json();
       if (!response.ok || result.status !== "success") {
         throw new Error(result.message || "Failed to fetch products");
@@ -172,7 +172,7 @@ function AdminDashboard() {
   const fetchCategories = async () => {
     try {
       setCategoriesLoading(true);
-      const response = await fetch("/store/admin/categories?limit=15&page=1");
+      const response = await fetch("https://new-task-2-g3c8.onrender.com/store/admin/categories?limit=15&page=1");
       const result = await response.json();
       if (!response.ok || result.status !== "success") {
         throw new Error(result.message || "Failed to fetch categories");
@@ -295,7 +295,7 @@ function AdminDashboard() {
 
   const handleDeleteProduct = async (id) => {
     try {
-      const response = await fetch(`/store/admin/products/${id}`, { method: "DELETE" });
+      const response = await fetch(`https://new-task-2-g3c8.onrender.com/store/admin/products/${id}`, { method: "DELETE" });
       const result = await response.json();
       if (!response.ok || result.status !== "success") {
         throw new Error(result.message || "Failed to delete product");
@@ -308,7 +308,7 @@ function AdminDashboard() {
 
   const handleDeleteCategory = async (id) => {
     try {
-      const response = await fetch(`/store/admin/categories/${id}`, { method: "DELETE" });
+      const response = await fetch(`https://new-task-2-g3c8.onrender.com/store/admin/categories/${id}`, { method: "DELETE" });
       const result = await response.json();
       if (!response.ok || result.status !== "success") {
         throw new Error(result.message || "Failed to delete category");
@@ -336,7 +336,7 @@ function AdminDashboard() {
     try {
       const isUpdate = editingProductId !== null;
       const response = await fetch(
-        isUpdate ? `/store/admin/products/${editingProductId}` : "/store/admin/products",
+        isUpdate ? `/store/admin/products/${editingProductId}` : "https://new-task-2-g3c8.onrender.com/store/admin/products",
         {
           method: isUpdate ? "PUT" : "POST",
           headers: { "Content-Type": "application/json" },
@@ -373,7 +373,7 @@ function AdminDashboard() {
     try {
       const isUpdate = editingCategoryId !== null;
       const response = await fetch(
-        isUpdate ? `/store/admin/categories/${editingCategoryId}` : "/store/admin/categories",
+        isUpdate ? `/store/admin/categories/${editingCategoryId}` : "https://new-task-2-g3c8.onrender.com/store/admin/categories",
         {
           method: isUpdate ? "PUT" : "POST",
           headers: { "Content-Type": "application/json" },
