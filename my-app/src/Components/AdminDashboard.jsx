@@ -4,6 +4,7 @@ function AdminDashboard() {
   const [isProductsOpen, setIsProductsOpen] = useState(false);
   const [activeView, setActiveView] = useState("dashboard");
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const [showAddProductForm, setShowAddProductForm] = useState(false);
   const [editingProductId, setEditingProductId] = useState(null);
@@ -208,9 +209,33 @@ function AdminDashboard() {
     return () => document.body.classList.remove("body-dark");
   }, [isDarkMode]);
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 768) {
+        setIsSidebarOpen(false);
+      }
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    const shouldLockBody = isSidebarOpen && window.innerWidth <= 768;
+    document.body.classList.toggle("sidebar-open", shouldLockBody);
+    return () => document.body.classList.remove("sidebar-open");
+  }, [isSidebarOpen]);
+
   const handleLogout = () => {
     localStorage.removeItem("adminToken");
     window.location.assign("/");
+  };
+
+  const handleSetActiveView = (view) => {
+    setActiveView(view);
+    if (window.innerWidth <= 768) {
+      setIsSidebarOpen(false);
+    }
   };
 
   const resetProductForm = () => {
@@ -915,18 +940,18 @@ const handleAddCategorySubmit = async (event) => {
 
   return (
     <div className={`admin-layout ${isDarkMode ? "theme-dark" : ""}`}>
-      <aside className="admin-sidebar">
+      <aside className={`admin-sidebar ${isSidebarOpen ? "open" : ""}`} id="admin-sidebar-nav">
         <div className="brand"><span className="brand-dot" />GrowStore</div>
         <nav className="admin-nav">
-          <button className={`nav-item ${activeView === "dashboard" ? "active" : ""}`} type="button" onClick={() => setActiveView("dashboard")}>Dashboard 1</button>
+          <button className={`nav-item ${activeView === "dashboard" ? "active" : ""}`} type="button" onClick={() => handleSetActiveView("dashboard")}>Dashboard 1</button>
           <button className="nav-item nav-with-icon" type="button" onClick={() => setIsProductsOpen((prev) => !prev)} aria-expanded={isProductsOpen}>
             <span>Products</span>
             <span className={`dropdown-icon ${isProductsOpen ? "open" : ""}`}>v</span>
           </button>
           {isProductsOpen ? (
             <>
-              <button className={`nav-sub-item ${activeView === "all-products" ? "sub-active" : ""}`} type="button" onClick={() => setActiveView("all-products")}>All Products</button>
-              <button className={`nav-sub-item ${activeView === "all-categories" ? "sub-active" : ""}`} type="button" onClick={() => setActiveView("all-categories")}>All Categories</button>
+              <button className={`nav-sub-item ${activeView === "all-products" ? "sub-active" : ""}`} type="button" onClick={() => handleSetActiveView("all-products")}>All Products</button>
+              <button className={`nav-sub-item ${activeView === "all-categories" ? "sub-active" : ""}`} type="button" onClick={() => handleSetActiveView("all-categories")}>All Categories</button>
               <button className="nav-sub-item" type="button">All Variations</button>
               <button className="nav-sub-item" type="button">All Brands</button>
               <button className="nav-sub-item" type="button">All Units</button>
@@ -969,8 +994,28 @@ const handleAddCategorySubmit = async (event) => {
           <button className="nav-sub-item" type="button">Queries</button>
         </nav>
       </aside>
+      {isSidebarOpen ? (
+        <button
+          type="button"
+          className="sidebar-backdrop"
+          onClick={() => setIsSidebarOpen(false)}
+          aria-label="Close sidebar menu"
+        />
+      ) : null}
 
       <main className="admin-main">
+        <button
+          type="button"
+          className="mobile-menu-btn"
+          onClick={() => setIsSidebarOpen((prev) => !prev)}
+          aria-label="Toggle sidebar menu"
+          aria-expanded={isSidebarOpen}
+          aria-controls="admin-sidebar-nav"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 7h16M4 12h16M4 17h16" />
+          </svg>
+        </button>
         {activeView === "all-products" ? renderProductsContent() : activeView === "all-categories" ? renderCategoriesContent() : renderDashboardContent()}
       </main>
 

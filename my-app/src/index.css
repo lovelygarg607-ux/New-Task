@@ -14,6 +14,10 @@ body.body-dark {
   color: #e2e8f0;
 }
 
+body.sidebar-open {
+  overflow: hidden;
+}
+
 .admin-layout {
   width: 100%;
   max-width: none;
@@ -186,7 +190,8 @@ body.body-dark {
 }
 
 .dashboard-search svg,
-.utility-icon-btn svg {
+.utility-icon-btn svg,
+.mobile-menu-btn svg {
   width: 14px;
   height: 14px;
   fill: none;
@@ -213,7 +218,8 @@ body.body-dark {
 
 .utility-link,
 .utility-chip,
-.utility-icon-btn {
+.utility-icon-btn,
+.mobile-menu-btn {
   border: 1px solid #dbe4ef;
   background: #fff;
   color: #42526b;
@@ -235,6 +241,18 @@ body.body-dark {
   padding: 0;
   display: grid;
   place-items: center;
+}
+
+.mobile-menu-btn {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  display: none;
+  place-items: center;
+}
+
+.sidebar-backdrop {
+  display: none;
 }
 
 .utility-profile {
@@ -1206,6 +1224,78 @@ th {
 }
 
 @media (max-width: 768px) {
+  .admin-layout {
+    position: relative;
+  }
+
+  .mobile-menu-btn {
+    display: grid;
+    flex: 0 0 auto;
+  }
+
+  .admin-main > .mobile-menu-btn {
+    margin-bottom: 8px;
+  }
+
+  .admin-sidebar {
+    position: fixed;
+    inset: 0 auto 0 0;
+    width: min(280px, calc(100% - 64px));
+    height: 100vh;
+    z-index: 1001;
+    transform: translateX(-100%);
+    transition: transform 0.25s ease;
+    border-right: 1px solid #e4ebf3;
+    border-bottom: 0;
+    overflow-y: auto;
+    box-shadow: 0 16px 40px rgba(15, 23, 42, 0.2);
+  }
+
+  .admin-sidebar.open {
+    transform: translateX(0);
+  }
+
+  .sidebar-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    border: 0;
+    background: rgba(15, 23, 42, 0.45);
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+  }
+
+  .admin-nav {
+    display: grid;
+    gap: 2px;
+    overflow: visible;
+    padding-bottom: 0;
+  }
+
+  .admin-nav .nav-group-title {
+    display: block;
+  }
+
+  .admin-nav .nav-item {
+    border: 0;
+    border-radius: 3px;
+    background: transparent;
+    padding: 5px 7px;
+    font-size: 10px;
+    white-space: normal;
+  }
+
+  .admin-nav .nav-sub-item {
+    border: 0;
+    border-radius: 3px;
+    background: transparent;
+    padding: 4px 8px 4px 16px;
+    font-size: 9px;
+    white-space: normal;
+  }
+
   .admin-main {
     padding: 10px;
   }
@@ -1611,6 +1701,7 @@ th {
 .theme-dark .utility-link,
 .theme-dark .utility-chip,
 .theme-dark .utility-icon-btn,
+.theme-dark .mobile-menu-btn,
 .theme-dark .utility-profile,
 .theme-dark .products-filters input,
 .theme-dark .filter-btn,
@@ -1670,6 +1761,10 @@ th {
 
 .theme-dark .top-selling-list li {
   border-bottom-color: #263a54;
+}
+
+.theme-dark .sidebar-backdrop {
+  background: rgba(2, 6, 23, 0.62);
 }
 
 .theme-dark .chart-wave-wrap::before {
