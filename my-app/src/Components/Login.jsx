@@ -53,7 +53,7 @@ function Login() {
 
     try {
       setLoading(true);
-      const response = await fetch("/store/admin/login", {
+      const response = await fetch("https://new-task-2-g3c8.onrender.com/store/admin/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
