@@ -1,0 +1,15 @@
+.App {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(1200px 600px at 10% 10%, #f4f7fb 0%, #f8f9fb 45%, #f1f3f7 100%);
+  padding: 0 16px;
+  font-family: "Poppins", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.App.dashboard-view {
+  display: block;
+  padding: 0;
+  background: #eef2f7;
+}
