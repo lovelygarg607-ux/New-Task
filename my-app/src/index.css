@@ -1306,23 +1306,38 @@ th {
 
   .utility-top,
   .main-top,
-  .products-page-head,
   .products-footer {
     flex-direction: column;
     align-items: stretch;
   }
 
   .utility-actions,
-  .top-actions,
-  .products-head-actions {
+  .top-actions {
     width: 100%;
     flex-wrap: wrap;
   }
 
   .utility-actions > *,
-  .top-actions > *,
-  .products-head-actions > * {
+  .top-actions > * {
     flex: 1 1 100%;
+  }
+
+  .products-page-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .products-head-actions {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    justify-content: flex-start;
+  }
+
+  .products-head-actions > * {
+    flex: 0 0 auto;
   }
 
   .dashboard-search {
