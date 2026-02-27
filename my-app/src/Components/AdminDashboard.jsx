@@ -239,9 +239,12 @@ function AdminDashboard() {
 
   const handleSetActiveView = (view) => {
     setActiveView(view);
+    if (view === "all-products") fetchProducts();
+    if (view === "all-categories") fetchCategories();
     if (window.innerWidth <= 768) {
       setIsSidebarOpen(false);
     }
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const handleProductsToggle = () => {
