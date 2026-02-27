@@ -1376,11 +1376,7 @@ th {
   }
 
   table {
-    min-width: 760px;
-  }
-
-  .products-table {
-    min-width: 700px;
+    min-width: 980px;
   }
 }
 
@@ -1417,11 +1413,7 @@ th {
   }
 
   table {
-    min-width: 640px;
-  }
-
-  .products-table {
-    min-width: 620px;
+    min-width: 980px;
   }
 }
 
@@ -1527,10 +1519,20 @@ th {
   width: 100%;
   overflow-x: auto;
   overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 
 .products-table {
+  width: max-content;
   min-width: 980px;
+}
+
+.products-table-products {
+  min-width: 980px;
+}
+
+.products-table-categories {
+  min-width: 860px;
 }
 
 .products-table th,
