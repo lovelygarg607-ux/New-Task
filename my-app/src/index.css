@@ -135,7 +135,7 @@ body.sidebar-open {
   cursor: pointer;
 }
 
-.nav-with-icon + .nav-sub-item {
+.nav-with-icon+.nav-sub-item {
   margin-top: -1px;
 }
 
@@ -154,6 +154,7 @@ body.sidebar-open {
   background: #f8fafc;
   padding: 12px;
   min-width: 0;
+  width: 100%;
 }
 
 .main-top {
@@ -776,11 +777,9 @@ body.sidebar-open {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: repeating-linear-gradient(
-    to top,
-    transparent 0 18%,
-    rgba(137, 154, 178, 0.18) 18% 19%
-  );
+  background-image: repeating-linear-gradient(to top,
+      transparent 0 18%,
+      rgba(137, 154, 178, 0.18) 18% 19%);
   pointer-events: none;
 }
 
@@ -1217,7 +1216,7 @@ th {
     justify-content: flex-start;
   }
 
-  .products-head-actions > * {
+  .products-head-actions>* {
     flex: 0 0 auto;
   }
 
@@ -1237,7 +1236,7 @@ th {
     flex: 0 0 auto;
   }
 
-  .admin-main > .mobile-menu-btn {
+  .admin-main>.mobile-menu-btn {
     margin-bottom: 8px;
   }
 
@@ -1317,8 +1316,8 @@ th {
     flex-wrap: wrap;
   }
 
-  .utility-actions > *,
-  .top-actions > * {
+  .utility-actions>*,
+  .top-actions>* {
     flex: 1 1 100%;
   }
 
@@ -1336,7 +1335,7 @@ th {
     justify-content: flex-start;
   }
 
-  .products-head-actions > * {
+  .products-head-actions>* {
     flex: 0 0 auto;
   }
 
@@ -1446,6 +1445,8 @@ th {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 .products-page-head h3 {
@@ -1513,6 +1514,7 @@ th {
 
 .products-table-panel {
   padding: 0;
+  min-width: 0;
 }
 
 .products-table-panel .table-wrap {
@@ -1815,11 +1817,9 @@ th {
 }
 
 .theme-dark .chart-wave-wrap::before {
-  background-image: repeating-linear-gradient(
-    to top,
-    transparent 0 18%,
-    rgba(91, 118, 151, 0.35) 18% 19%
-  );
+  background-image: repeating-linear-gradient(to top,
+      transparent 0 18%,
+      rgba(91, 118, 151, 0.35) 18% 19%);
 }
 
 @keyframes growBar {
@@ -1827,6 +1827,7 @@ th {
     height: 4px;
     opacity: 0.45;
   }
+
   to {
     height: var(--h);
     opacity: 1;
@@ -1838,6 +1839,7 @@ th {
     height: 6px;
     opacity: 0.4;
   }
+
   to {
     height: var(--h);
     opacity: 1;
@@ -1855,6 +1857,7 @@ th {
     opacity: 0;
     transform: translateY(8px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -1866,6 +1869,7 @@ th {
     opacity: 0;
     transform: scale(0.6);
   }
+
   to {
     opacity: 1;
     transform: scale(1);
