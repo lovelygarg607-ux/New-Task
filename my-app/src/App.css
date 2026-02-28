@@ -13,3 +13,9 @@
   padding: 0;
   background: #eef2f7;
 }
+
+@media (max-width: 480px) {
+  .App.dashboard-view {
+    padding-bottom: 24px;
+  }
+}
